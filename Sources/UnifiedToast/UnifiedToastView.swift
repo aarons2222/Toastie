@@ -91,7 +91,7 @@ extension UnifiedToastStyle {
 
 
 
-struct UnifiedToast: Equatable {
+public struct UnifiedToast: Equatable {
     var type: UnifiedToastStyle
     var title: String
     var message: String
@@ -132,7 +132,7 @@ struct UnifiedToastModifier: ViewModifier {
         }
     }
     
-    private func showToast() {
+    public func showToast() {
         guard let toast = toast else { return }
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -149,7 +149,7 @@ struct UnifiedToastModifier: ViewModifier {
         }
     }
     
-    private func dismissToast() {
+    public func dismissToast() {
         withAnimation {
             toast = nil
         }
