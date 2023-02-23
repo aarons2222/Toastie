@@ -3,9 +3,19 @@
 UnifiedToast is a lightweight and customizable toast library for iOS that works with both UIKit and SwiftUI.
 
 
+## Installation
+
+### Swift Package Manager
+
+You can install UnifiedToast using Swift Package Manager. In Xcode, go to `File > Swift Packages > Add Package Dependency` and enter the URL for this repository: https://github.com/aarons2222/UnifiedToast
+
+### Manual
+
+Alternatively, you can also add the `UnifiedToast.swift` file to your Xcode project manually.
 
 
-## SwiftUI Usage
+
+## With SwiftUI 
 
 ```SwiftUI
 import SwiftUI
@@ -33,7 +43,7 @@ struct ContentView: View {
 
 
 
-## UIKit Usage
+## With UIKit 
 
 ```UIKit
 import UIKit
