@@ -68,7 +68,7 @@ enum UnifiedToastStyle {
 
 @available(iOS 15.0, *)
 extension UnifiedToastStyle {
-    var themeColor: Color {
+    public var themeColor: Color {
         switch self {
         case .error: return Color.red
         case .warning: return Color.orange
@@ -78,7 +78,7 @@ extension UnifiedToastStyle {
         }
     }
     
-    var iconFileName: String {
+    public var iconFileName: String {
         switch self {
         case .info: return "info.circle.fill"
         case .warning: return "exclamationmark.triangle.fill"
@@ -99,11 +99,11 @@ public struct UnifiedToast: Equatable {
 }
 
 @available(iOS 15.0, *)
-struct UnifiedToastModifier: ViewModifier {
+public struct UnifiedToastModifier: ViewModifier {
     @Binding var toast: UnifiedToast?
     @State private var workItem: DispatchWorkItem?
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
