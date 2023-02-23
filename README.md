@@ -18,20 +18,19 @@ Alternatively, you can also add the `UnifiedToast.swift` file to your Xcode proj
 ## With SwiftUI 
 
 ```SwiftUI
-import SwiftUI
-import UnifiedToast
-
 struct ContentView: View {
-    @State private var showToast = false
-    
-    var body: some View {
-        VStack {
-            Button("Show Toast") {
-                self.showToast = true
-            }
-        }
-        .toast(isPresented: $showToast, title: "Hello", message: "This is a toast message!", duration: 2.0)
-    }
+    @State var toast: UnifiedToast? = nil
+      var body: some View {
+          VStack {
+              Button {
+                  toast = UnifiedToast(type: .error, title: "Error", message: "Check connection")
+              } label: {
+                  Text("Run")
+              }
+
+          }
+          .toastView(toast: $toast)
+      }
 }
 
 ```
