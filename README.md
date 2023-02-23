@@ -18,6 +18,10 @@ Alternatively, you can also add the `UnifiedToast.swift` file to your Xcode proj
 ## With SwiftUI 
 
 ```SwiftUI
+
+import SwiftUI
+import UnifiedToast
+
 struct ContentView: View {
     @State var toast: UnifiedToast? = nil
       var body: some View {
