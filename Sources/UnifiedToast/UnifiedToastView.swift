@@ -91,12 +91,24 @@ public extension UnifiedToastStyle {
 
 
 
+
+
+
 public struct UnifiedToast: Equatable {
-    public var type: UnifiedToastStyle
-    public var title: String
-    public var message: String
-    public var duration: Double = 2.5
+    
+    var type: UnifiedToastStyle
+    var title: String
+    var message: String
+    var duration: Double = 2.5
+    
+    public init(type: UnifiedToastStyle, title: String, message: String, duration: Double = 2.5) {
+        self.type = type
+        self.title = title
+        self.message = message
+        self.duration = duration
+    }
 }
+
 
 @available(iOS 15.0, *)
 public struct UnifiedToastModifier: ViewModifier {
