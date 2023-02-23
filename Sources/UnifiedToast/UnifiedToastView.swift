@@ -56,7 +56,7 @@ public struct UnifiedToastView: View {
 }
 
 
-enum UnifiedToastStyle {
+public enum UnifiedToastStyle {
     case error
     case warning
     case success
