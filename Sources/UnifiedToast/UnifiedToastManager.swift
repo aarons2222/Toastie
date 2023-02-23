@@ -11,9 +11,9 @@ import UIKit
 import SwiftUI
 
 @available(iOS 15.0, *)
-class UnifiedToastManager {
+public class UnifiedToastManager {
     
-    static func showUnifiedToast(type: UnifiedToastStyle, title: String, message: String, in viewController: UIViewController) {
+   public static func showUnifiedToast(type: UnifiedToastStyle, title: String, message: String, in viewController: UIViewController) {
         let toastView = UnifiedToastView(type: type, title: title, message: message)
         let toastViewController = UIHostingController(rootView: toastView)
         toastViewController.view.backgroundColor = UIColor.clear
