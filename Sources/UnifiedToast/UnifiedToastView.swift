@@ -11,12 +11,12 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 
-struct UnifiedToastView: View {
+public struct UnifiedToastView: View {
     var type: UnifiedToastStyle
     var title: String
     var message: String
  
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Image(systemName: type.iconFileName)
