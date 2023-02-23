@@ -67,8 +67,8 @@ public enum UnifiedToastStyle {
 
 
 @available(iOS 15.0, *)
-extension UnifiedToastStyle {
-    public var themeColor: Color {
+public extension UnifiedToastStyle {
+     var themeColor: Color {
         switch self {
         case .error: return Color.red
         case .warning: return Color.orange
@@ -78,7 +78,7 @@ extension UnifiedToastStyle {
         }
     }
     
-    public var iconFileName: String {
+     var iconFileName: String {
         switch self {
         case .info: return "info.circle.fill"
         case .warning: return "exclamationmark.triangle.fill"
@@ -92,10 +92,10 @@ extension UnifiedToastStyle {
 
 
 public struct UnifiedToast: Equatable {
-    var type: UnifiedToastStyle
-    var title: String
-    var message: String
-    var duration: Double = 2.5
+    public var type: UnifiedToastStyle
+    public var title: String
+    public var message: String
+    public var duration: Double = 2.5
 }
 
 @available(iOS 15.0, *)
