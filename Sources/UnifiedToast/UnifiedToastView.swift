@@ -161,8 +161,8 @@ public struct UnifiedToastModifier: ViewModifier {
 
 
 @available(iOS 15.0, *)
-extension View {
-    func toastView(toast: Binding<UnifiedToast?>) -> some View {
+public extension View {
+     func toastView(toast: Binding<UnifiedToast?>) -> some View {
         self.modifier(UnifiedToastModifier(toast: toast))
     }
 }
