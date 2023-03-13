@@ -6,12 +6,15 @@
 //
 
 
+
 import Foundation
 import SwiftUI
 
 @available(iOS 15.0, *)
 
 public struct UnifiedToastView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     var type: UnifiedToastStyle
     var title: String
     var message: String
@@ -28,10 +31,11 @@ public struct UnifiedToastView: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.system(size: 14, weight: .semibold))
-                    
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black.opacity(0.6))
+
                     Text(message)
                         .font(.system(size: 12))
-                        .foregroundColor(Color.black.opacity(0.6))
+                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black.opacity(0.6))
                 }
                 
                 Spacer(minLength: 10)
@@ -40,7 +44,7 @@ public struct UnifiedToastView: View {
             }
             .padding()
         }
-        .background(Color.white)
+        .background(colorScheme == .dark ? Color.gray : Color.white)
         .overlay(
             Rectangle()
                 .fill(type.themeColor)
@@ -178,5 +182,6 @@ public extension View {
         self.modifier(UnifiedToastModifier(toast: toast))
     }
 }
+
 
 
