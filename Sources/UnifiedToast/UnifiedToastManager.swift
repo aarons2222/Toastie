@@ -1,10 +1,9 @@
 //
-//  File.swift
-//  
+//  huddyManager.swift
+//  InteroprabilitySwiftui
 //
-//  Created by Aaron Strickland on 23/02/2023.
+//  Created by Aaron Strickland on 22/02/2023.
 //
-
 
 import Foundation
 import UIKit
@@ -32,15 +31,22 @@ public class UnifiedToastManager {
 
         DispatchQueue.main.async {
             if shouldAnimate {
+                // Calculate the required height of the toast view based on the size of the text
+                let font = UIFont.systemFont(ofSize: 14)
+                let contentWidth = viewController.view.frame.width - 32 // Subtracting padding on both sides
+                let titleHeight = title.boundingRect(with: CGSize(width: contentWidth, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
+                let messageHeight = message.boundingRect(with: CGSize(width: contentWidth, height: .greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
+                let requiredHeight = titleHeight + messageHeight + 32 // Add some extra padding
+
                 // Set up constraints for the toast view
                 NSLayoutConstraint.activate([
                     toastViewController!.view.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
                     toastViewController!.view.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-                    toastViewController!.view.heightAnchor.constraint(equalToConstant: 80),
+                    toastViewController!.view.heightAnchor.constraint(equalToConstant: requiredHeight),
                 ])
 
                 // Add the top constraint after the top layout guide has been set up
-                let topConstraint = toastViewController!.view.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: -80)
+                let topConstraint = toastViewController!.view.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: -requiredHeight)
                 NSLayoutConstraint.activate([topConstraint])
 
                 // Layout the view hierarchy before animating the toast view
@@ -54,7 +60,7 @@ public class UnifiedToastManager {
                     // Use a DispatchQueue to introduce a delay before animating the toast view sliding down
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                         // Animate the toast view sliding down
-                        topConstraint.constant = -80
+                        topConstraint.constant = -requiredHeight
                         UIView.animate(withDuration: 1.0, animations: {
                         }) { _ in
                             toastViewController!.willMove(toParent: nil)
