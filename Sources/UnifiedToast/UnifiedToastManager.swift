@@ -1,6 +1,5 @@
 //
-//  huddyManager.swift
-//  InteroprabilitySwiftui
+//  UnifiedToastManager.swift
 //
 //  Created by Aaron Strickland on 22/02/2023.
 //
@@ -15,6 +14,10 @@ public class UnifiedToastManager {
     static var toastViewController: UIHostingController<UnifiedToastView>?
 
     public static func showUnifiedToast(type: UnifiedToastStyle, title: String, message: String, in viewController: UIViewController) {
+        
+        DispatchQueue.main.async {
+            
+            
         let toastView = UnifiedToastView(type: type, title: title, message: message)
         let shouldAnimate = toastViewController == nil
 
@@ -29,7 +32,7 @@ public class UnifiedToastManager {
             toastViewController!.rootView = toastView
         }
 
-        DispatchQueue.main.async {
+  
             if shouldAnimate {
                 // Calculate the required height of the toast view based on the size of the text
                 let font = UIFont.systemFont(ofSize: 14)
