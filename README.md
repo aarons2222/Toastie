@@ -1,17 +1,17 @@
 
-# UnifiedToast
-UnifiedToast is a lightweight and customizable toast library for iOS that works with both UIKit and SwiftUI.
+# Toastie
+Toastie is a lightweight and customizable toast library for iOS that works with both UIKit and SwiftUI.
 
 
 ## Installation
 
 ### Swift Package Manager
 
-You can install UnifiedToast using Swift Package Manager. In Xcode, go to `File > Swift Packages > Add Package Dependency` and enter the URL for this repository: https://github.com/aarons2222/UnifiedToast
+You can install Toastie using Swift Package Manager. In Xcode, go to `File > Swift Packages > Add Package Dependency` and enter the URL for this repository: https://github.com/aarons2222/Toastie
 
 ### Manual
 
-Alternatively, you can also add the `UnifiedToast.swift` file to your Xcode project manually.
+Alternatively, you can also add the `Toastie.swift` file to your Xcode project manually.
 
 
 
@@ -20,14 +20,14 @@ Alternatively, you can also add the `UnifiedToast.swift` file to your Xcode proj
 ```SwiftUI
 
 import SwiftUI
-import UnifiedToast
+import Toastie
 
 struct ContentView: View {
-    @State var toast: UnifiedToast? = nil
+    @State var toast: Toastie? = nil
       var body: some View {
           VStack {
               Button {
-                  toast = UnifiedToast(type: .error, title: "Error", message: "Check connection")
+                  toast = Toastie(type: .error, title: "Error", message: "Check connection")
               } label: {
                   Text("Run")
               }
@@ -50,7 +50,7 @@ struct ContentView: View {
 
 ```UIKit
 import UIKit
-import UnifiedToast
+import Toastie
 
 class ViewController: UIViewController {
 
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
-        UnifiedToastManager.showUnifiedToast(type: .warning, title: "Success", message: "Operation completed successfully", in: self)
+        ToastieManager.showToastie(type: .warning, title: "Success", message: "Operation completed successfully", in: self)
 
     }
 }
