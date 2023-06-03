@@ -9,27 +9,27 @@ import UIKit
 import SwiftUI
 
 @available(iOS 15.0, *)
-public class UnifiedToastManager {
+public class ToastieManager {
 
-    static var toastViewController: UIHostingController<UnifiedToastView>?
+    static var toastieViewController: UIHostingController<ToastieView>?
 
-    public static func showUnifiedToast(type: UnifiedToastStyle, title: String, message: String, in viewController: UIViewController) {
+    public static func showToastie(type: ToastieStyle, title: String, message: String, in viewController: UIViewController) {
         
         DispatchQueue.main.async {
             
             
-        let toastView = UnifiedToastView(type: type, title: title, message: message)
-        let shouldAnimate = toastViewController == nil
+        let toastView = ToastieView(type: type, title: title, message: message)
+        let shouldAnimate = toastieViewController == nil
 
-        if toastViewController == nil {
-            toastViewController = UIHostingController(rootView: toastView)
-            toastViewController!.view.backgroundColor = UIColor.clear
-            toastViewController!.view.translatesAutoresizingMaskIntoConstraints = false
+        if toastieViewController == nil {
+            toastieViewController = UIHostingController(rootView: toastView)
+            toastieViewController!.view.backgroundColor = UIColor.clear
+            toastieViewController!.view.translatesAutoresizingMaskIntoConstraints = false
 
-            viewController.addChild(toastViewController!)
-            viewController.view.addSubview(toastViewController!.view)
+            viewController.addChild(toastieViewController!)
+            viewController.view.addSubview(toastieViewController!.view)
         } else {
-            toastViewController!.rootView = toastView
+            toastieViewController!.rootView = toastView
         }
 
   
@@ -43,13 +43,13 @@ public class UnifiedToastManager {
 
                 // Set up constraints for the toast view
                 NSLayoutConstraint.activate([
-                    toastViewController!.view.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
-                    toastViewController!.view.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
-                    toastViewController!.view.heightAnchor.constraint(equalToConstant: requiredHeight),
+                    toastieViewController!.view.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor),
+                    toastieViewController!.view.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor),
+                    toastieViewController!.view.heightAnchor.constraint(equalToConstant: requiredHeight),
                 ])
 
                 // Add the top constraint after the top layout guide has been set up
-                let topConstraint = toastViewController!.view.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: -requiredHeight)
+                let topConstraint = toastieViewController!.view.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: -requiredHeight)
                 NSLayoutConstraint.activate([topConstraint])
 
                 // Layout the view hierarchy before animating the toast view
@@ -66,10 +66,10 @@ public class UnifiedToastManager {
                         topConstraint.constant = -requiredHeight
                         UIView.animate(withDuration: 1.0, animations: {
                         }) { _ in
-                            toastViewController!.willMove(toParent: nil)
-                            toastViewController!.view.removeFromSuperview()
-                            toastViewController!.removeFromParent()
-                            toastViewController = nil
+                            toastieViewController!.willMove(toParent: nil)
+                            toastieViewController!.view.removeFromSuperview()
+                            toastieViewController!.removeFromParent()
+                            toastieViewController = nil
                         }
                     }
                 }

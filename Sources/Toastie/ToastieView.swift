@@ -12,10 +12,10 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 
-public struct UnifiedToastView: View {
+public struct ToastieView: View {
     @Environment(\.colorScheme) var colorScheme
 
-    var type: UnifiedToastStyle
+    var type: ToastieStyle
     var title: String
     var message: String
  
@@ -60,7 +60,7 @@ public struct UnifiedToastView: View {
 }
 
 
-public enum UnifiedToastStyle {
+public enum ToastieStyle {
     case error
     case warning
     case success
@@ -71,7 +71,7 @@ public enum UnifiedToastStyle {
 
 
 @available(iOS 15.0, *)
-public extension UnifiedToastStyle {
+public extension ToastieStyle {
      var themeColor: Color {
         switch self {
         case .error: return Color.red
@@ -98,14 +98,14 @@ public extension UnifiedToastStyle {
 
 
 
-public struct UnifiedToast: Equatable {
+public struct Toastie: Equatable {
     
-    var type: UnifiedToastStyle
+    var type: ToastieStyle
     var title: String
     var message: String
     var duration: Double = 2.5
     
-    public init(type: UnifiedToastStyle, title: String, message: String, duration: Double = 2.5) {
+    public init(type: ToastieStyle, title: String, message: String, duration: Double = 2.5) {
         self.type = type
         self.title = title
         self.message = message
@@ -115,8 +115,8 @@ public struct UnifiedToast: Equatable {
 
 
 @available(iOS 15.0, *)
-public struct UnifiedToastModifier: ViewModifier {
-    @Binding var toast: UnifiedToast?
+public struct ToastieModifier: ViewModifier {
+    @Binding var toast: Toastie?
     @State private var workItem: DispatchWorkItem?
     
     public func body(content: Content) -> some View {
@@ -124,7 +124,7 @@ public struct UnifiedToastModifier: ViewModifier {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
                 ZStack {
-                    mainToastView()
+                    mainToastieView()
                         .offset(y: -30)
                 }.animation(.spring(), value: toast)
             )
@@ -133,11 +133,11 @@ public struct UnifiedToastModifier: ViewModifier {
             }
     }
     
-    @ViewBuilder func mainToastView() -> some View {
+    @ViewBuilder func mainToastieView() -> some View {
         if let toast = toast {
             VStack {
                 Text("").padding(5)
-                UnifiedToastView(
+                ToastieView(
                     type: toast.type,
                     title: toast.title,
                     message: toast.message)
@@ -178,8 +178,8 @@ public struct UnifiedToastModifier: ViewModifier {
 
 @available(iOS 15.0, *)
 public extension View {
-     func toastView(toast: Binding<UnifiedToast?>) -> some View {
-        self.modifier(UnifiedToastModifier(toast: toast))
+     func toastieView(toast: Binding<Toastie?>) -> some View {
+        self.modifier(ToastieModifier(toast: toast))
     }
 }
 
