@@ -33,7 +33,7 @@ struct ContentView: View {
               }
 
           }
-          .toastView(toast: $toast)
+          .toastieView(toast: $toast)
       }
 }
 
